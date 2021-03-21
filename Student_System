@@ -1,0 +1,129 @@
+
+package Student_System;
+
+import java.util.Scanner;
+
+public class Student_System {
+	public static double score[];
+
+	public static void main(String[] args) {
+
+		// double score[] = null;
+		double average;
+		double highest;
+		double lowest;
+		int choose = menu();
+		while (choose != 5) {
+
+			switch (choose) {
+
+			case 1:
+				Input();
+				break;
+			case 2:
+				if (score == null) {
+					System.out.println("成绩未录入，请先录入成绩再执行该功能！");
+					break;
+				}
+				average = Average();
+				System.out.println("average = " + average);
+				break;
+			case 3:
+				if (score == null) {
+					System.out.println("成绩未录入，请先录入成绩再执行该功能！");
+					break;
+				}
+				highest = Highest();
+				System.out.println("highest = " + highest);
+				break;
+			case 4:
+				if (score == null) {
+					System.out.println("成绩未录入，请先录入成绩再执行该功能！");
+					break;
+				}
+				lowest = Lowest();
+				System.out.println("lowest = " + lowest);
+				break;
+			default:
+				System.out.println("输入错误，请重新输入");
+
+			}
+
+			choose = menu();
+		}
+		System.out.println("程序退出！欢迎下次使用！");
+	}
+
+	// 完成菜单的显示和用户的选择
+	public static int menu() {
+		int choose = 0;
+		System.out.println("===========WTU Bank==========");
+		System.out.println("1.Input");
+		System.out.println("2.Average");
+		System.out.println("3.Highest");
+		System.out.println("4.Lowest");
+		System.out.println("5.Exit");
+		System.out.print("Please choose(1-5):");
+
+		Scanner scan = new Scanner(System.in);
+		choose = scan.nextInt();
+
+		return choose;
+	}
+
+	public static void Input() {
+
+		score = new double[5];
+		
+		Scanner scan = new Scanner(System.in);
+		for (int i = 0; i < score.length; i++) {
+			boolean sign = false;
+			System.out.print("请输入第" + (i + 1) + "个数(0-100)：");
+			score[i] = scan.nextDouble();
+			while (!sign) {
+				if (score[i] < 0 || score[i] > 100) {
+					System.out.print("输入错误,请重新输入:");
+					score[i] = scan.nextDouble();
+				} else {
+					break;
+				}
+			}
+		}
+	}
+
+	public static double Average() {
+
+		// score = new double[5];
+		double average = 0;
+		double sum = 0;
+		for (int i = 0; i < score.length; i++) {
+			sum = sum + score[i];
+		}
+		average = sum / score.length;
+
+		return average;
+
+	}
+
+	public static double Highest() {
+		double highest = score[0];
+		for (int i = 1; i < score.length; i++) {
+			if (score[i] > highest) {
+				highest = score[i];
+			}
+		}
+
+		return highest;
+
+	}
+
+	public static double Lowest() {
+		double lowest = score[0];
+		for (int i = 1; i < score.length; i++) {
+			if (score[i] < lowest) {
+				lowest = score[i];
+			}
+		}
+		return lowest;
+	}
+}

@@ -1,0 +1,131 @@
+package twoNums;
+
+import java.util.Scanner;
+
+public class twoNums {
+	public static double twoNum[];
+
+	public static void main(String agrs[]) {
+		int choice = menu();
+
+		while (choice != 6) {
+			switch (choice) {
+			
+			case 1:
+				f1();
+				break;
+			case 2:
+				if (twoNum == null) {
+					System.out.println("还未输入两个数据，该功能无法执行！请先输入两个数据");
+					break;
+				}
+				f2();
+				break;
+			case 3:
+				if (twoNum == null) {
+					System.out.println("还未输入两个数据，该功能无法执行！请先输入两个数据");
+					break;
+				}
+				f3();
+				break;
+			case 4:
+				f4();
+				break;
+			case 5:
+				if (twoNum == null) {
+					System.out.println("还未输入两个数据，该功能无法执行！请先输入两个数据");
+					break;
+				}
+				f5();
+				break;
+			default:
+				System.out.println("输入错误，请重新输入:");
+
+			}
+			choice = menu();
+
+		}
+		System.out.println("程序退出，欢迎下次使用！");
+
+	}
+
+	public static int menu() {
+		int choice;
+
+		System.out.println("1.输入两个数(firstNum<secondNum)");
+		System.out.println("2.输出firstNum和secondNum两个数之间的所有奇数");
+		System.out.println("3.输出firstNum和secondNum之间所有偶数的和");
+		System.out.println("4.输出1到10之间所有数字及其平方");
+		System.out.println("5.输出firstNum和secondNum之间所有奇数的平方和");
+		System.out.println("6.退出");
+
+		System.out.print("Enter your choice:");
+		Scanner scan = new Scanner(System.in);
+		return choice = scan.nextInt();
+
+	}
+
+	public static void f1() {
+		int sum = 0;
+		
+		twoNum = new double[2];
+		System.out.println("请输入两个整数:");
+		Scanner scan = new Scanner(System.in);
+		for (int i = 0; i < twoNum.length; i++) {
+			boolean sign = true;
+			System.out.print("请输入第" + (i + 1) + "个数：");
+			twoNum[i] = scan.nextDouble();
+			while(sign) {
+				if((int)twoNum[i] == twoNum[i]) { //为整数
+					break;
+				}
+				else { //不为整数
+					System.out.print("输入错误，请重新输入:");
+					twoNum[i] = scan.nextDouble();
+				//	sign = false;
+				}
+			}
+		}
+	}
+
+	public static void f2() {
+
+		System.out.print(twoNum[0] + "和" + twoNum[1] + "之间所有的奇数为:");
+
+		for (int i = (int)twoNum[0] + 1; i < (int)twoNum[1]; i++) {
+			if ((i % 2) == 1) {
+				System.out.print(i + "  ");
+			}
+		}
+		System.out.println();
+	}
+
+	public static void f3() {
+		int sum = 0;
+		for (int i = (int)twoNum[0] + 1; i < (int)twoNum[1]; i++) {
+			if ((i % 2) == 0) {
+				sum += i;
+			}
+		}
+		System.out.println(twoNum[0] + "和" + twoNum[1] + "之间所有偶数的和为" + sum);
+	}
+
+	public static void f4() {
+		System.out.println("1到10之间所有数字及其平方:");
+		for (int i = 2; i < 10; i++) {
+			System.out.print(i + "    ");
+			System.out.println(i + "的平方为" + Math.pow(i, 2));
+		}
+	}
+
+	public static void f5() {
+		int sum = 0;
+		for (int i = (int)twoNum[0] + 1; i < (int)twoNum[1]; i++) {
+			if ((i % 2) == 1) {
+				sum += Math.pow(i, 2);
+			}
+		}
+		System.out.println(twoNum[0] + "和" + twoNum[1] + "之间所有奇数的平方和为" + sum);
+	}
+
+}
